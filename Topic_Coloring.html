@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p data-topic-name="discussion">General discussion</p>
+        <p data-topic-name="bugs">Bugs</p>
+        <p data-topic-name="animals">Animals</p>
+    </div>
+</body>
+<script>
+    function newMessage() {
+        let target = document.getElementsByTagName('p');
+        console.log(target); // HTMLCollection(3) [p, p, p]
+
+        // 특정 p태그 클릭시 배경색 바꾸는 로직
+        for (let i = 0; i < target.length; i++) {
+            target[i].addEventListener('click', function() {
+                target[i].style.backgroundColor = 'red';
+            })
+        }
+    }
+    newMessage();
+</script>
+
+</html>
