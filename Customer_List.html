@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul id="customers">
+        </ul>
+    </div>
+</body>
+<script>
+    // 1. for of문을 통해 customers의 name속성을 targetList의 자식노드에 추가한다.
+    // 2. 해당 자식노드 name속성을 클릭시 세부내용(email)을 추가 or 삭제하기 위해 cliked변수를 boolean자료형으로 초기화한다
+    // 3. cliked === false 일때 클릭시 name, email값이 나온다.
+    // 4. cliked === true 일때 클릭시 name 값이 나온다.
+
+    function showCustomers(customers, targetList) {
+        for (let item of customers) {
+            let clicked = false;
+            let childElement = document.createElement('li');
+            let appendChildElement = targetList.appendChild(childElement);
+            console.log(appendChildElement.innerHTML);
+            appendChildElement.innerHTML = `<p> ${item.name} </p>`;
+            appendChildElement.addEventListener('click', () => {
+                if (clicked === false) {
+                    appendChildElement.innerHTML = `<p>${item.name}</p>
+                                        <p>${item.email}</p>`;
+                    clicked = true;
+                } else {
+                    appendChildElement.innerHTML = `<p>${item.name}</p>`;
+                    clicked = false;
+                }
+            })
+        }
+    }
+    let customers = [{
+        name: "John",
+        email: "john@example.com"
+    }, {
+        name: "Mary",
+        email: "mary@example.com"
+    }];
+    showCustomers(customers, document.getElementById("customers"));
+
+    let customerParagraph = document.querySelectorAll("li > p")[0];
+</script>
+
+</html>
